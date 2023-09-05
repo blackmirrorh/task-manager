@@ -8,11 +8,12 @@ CREATE TABLE IF NOT EXISTS tasks(
     status VARCHAR(15) NOT NULL,
     PRIMARY KEY (id)
 );
-/*
+/*;
+
 INSERT INTO tasks (description, status) VALUES 
 	("Tarea num. 1", "pendiente"),
 	("Tarea num. 2", "en progreso"),
     ("Tarea num. 3", "pendiente"),
     ("Tarea num. 4", "completada");
 */
-select * from tasks
+SELECT * from tasks
