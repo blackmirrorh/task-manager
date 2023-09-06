@@ -23,8 +23,7 @@ public class TaskServices {
 	}
 	
 	public boolean addNewTask(Task task) {
-		String status = task.getStatus(); 
-		if(status.equals("pendiente") || status.equals("en progreso") || status.equals("completada")) {
+		if(validateStatus(task.getStatus())) {
 			repository.save(task);
 			return true;
 		}
@@ -35,10 +34,12 @@ public class TaskServices {
 		Optional<Task> optionalEntity = repository.findById(id);
 		if(optionalEntity.isPresent()) {
 			Task oldTask = optionalEntity.get();
-			oldTask.setDescription(task.getDescription());
-			oldTask.setStatus(task.getStatus());
-			repository.save(oldTask);
-			return true;
+			if(validateStatus(task.getStatus())) {
+				oldTask.setDescription(task.getDescription());
+				oldTask.setStatus(task.getStatus());
+				repository.save(oldTask);
+				return true;
+			}			
 		}
 		return false;
 	}
@@ -50,5 +51,9 @@ public class TaskServices {
 			return true;
 		}
 		return false;
+	}
+	
+	private boolean validateStatus(String status) {
+		return (status.equals("pendiente") || status.equals("en progreso") || status.equals("completada")) ? true : false;
 	}
 }

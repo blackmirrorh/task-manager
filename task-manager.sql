@@ -16,4 +16,4 @@ INSERT INTO tasks (description, status) VALUES
     ("Tarea num. 3", "pendiente"),
     ("Tarea num. 4", "completada");
 */
-SELECT * from tasks
+select * from tasks;
